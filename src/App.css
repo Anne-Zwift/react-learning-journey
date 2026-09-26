@@ -1,0 +1,11 @@
+.active-link {
+  font-weight: bold;
+  color: darkcyan;
+  text-decoration: none;
+}
+
+.link {
+  font-weight: lighter;
+  color: black;
+  text-decoration: none;
+}

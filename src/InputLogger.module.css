@@ -1,0 +1,8 @@
+.textField {
+  background: rgb(206, 249, 245);
+  border-radius: 10px;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  color: black;
+}

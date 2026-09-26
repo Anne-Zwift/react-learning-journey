@@ -1,0 +1,20 @@
+.counterMinus {
+  background: #eff294;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.counterPlus {
+  background: #b6f0e4;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.counterPlusFive {
+  background: #cd69e9;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+}
