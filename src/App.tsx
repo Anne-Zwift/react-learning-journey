@@ -14,6 +14,7 @@ function App() {
         <Link to="/shop">Shop</Link> |{' '}
         <Link to="/demo">Demo Archive</Link> | {' '}
         <Link to="/">Home</Link> | <Link to="/users">Users</Link> | {' '}
+        <Link to="/">Home</Link> | <Link to="/towns">Towns</Link> | {' '}
       </nav>
       <hr />
 
