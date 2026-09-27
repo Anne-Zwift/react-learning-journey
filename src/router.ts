@@ -10,6 +10,8 @@ import ProductListPage from './pages_shop/ProductListPage';
 import ShopLayout from './pages_shop/ShopLayout';
 import ShoppingCartPage from './pages_shop/ShoppingCartPage';
 import NotFoundPage from './NotFoundPage';
+import UserListPage from './pages_user/UserListPage';
+import UserDetailPage from './pages_user/UserDetailPage';
 
 // Root route wraps the App layout component
 const rootRoute = new RootRoute({ component: App });
@@ -71,6 +73,18 @@ const cartRoute = new Route({
   component: ShoppingCartPage,
 });
 
+const userListRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/users',
+  component: UserListPage,
+});
+
+export const userDetailRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/users/$userId',
+  component: UserDetailPage,
+})
+
 const notFoundRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '*',
@@ -87,6 +101,8 @@ const routeTree = rootRoute.addChildren([
   articlesRoute,
   articleDetailRoute,
   shopRoute,
+  userListRoute,
+  userDetailRoute,
   notFoundRoute,
 ]);
 

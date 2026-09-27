@@ -12,7 +12,8 @@ function App() {
         <Link to="/info">Info</Link> |{' '}
         <Link to="/articles">Articles</Link> |{' '}
         <Link to="/shop">Shop</Link> |{' '}
-        <Link to="/demo">Demo Archive</Link>
+        <Link to="/demo">Demo Archive</Link> | {' '}
+        <Link to="/">Home</Link> | <Link to="/users">Users</Link> | {' '}
       </nav>
       <hr />
 
