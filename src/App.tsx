@@ -15,6 +15,9 @@ function App() {
         <Link to="/demo">Demo Archive</Link> | {' '}
         <Link to="/">Home</Link> | <Link to="/users">Users</Link> | {' '}
         <Link to="/">Home</Link> | <Link to="/towns">Towns</Link> | {' '}
+        <Link to="/articles/$articleId" params={{ articleId: '1' }}>Article 1</Link> | {' '}
+        <Link to="/articles/$articleId" params={{ articleId: '2' }}>Article 2</Link> | {' '}
+        <Link to="/articles/$articleId" params={{ articleId: '99' }}>Article 99</Link> | {' '}
       </nav>
       <hr />
 

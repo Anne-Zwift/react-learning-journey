@@ -1,10 +1,11 @@
 import { RootRoute, Route, Router } from '@tanstack/react-router';
+import { createElement } from 'react';
 import App from './App';
 import WelcomePage from './tanstack_pages/WelcomePage';
 import ContactPage from './tanstack_pages/ContactPage';
 import Demo from './Demo';
-import ArticleDetailPage from './pages_directory/ArticleDetailPage';
-import ArticleListPage from './pages_directory/ArticleListPage';
+//import ArticleDetailPage from './pages_directory/ArticleDetailPage';
+//import ArticleListPage from './pages_directory/ArticleListPage';
 import InfoPage from './pages_directory/InfoPage';
 import ProductListPage from './pages_shop/ProductListPage';
 import ShopLayout from './pages_shop/ShopLayout';
@@ -13,6 +14,8 @@ import NotFoundPage from './NotFoundPage';
 import UserListPage from './pages_user/UserListPage';
 import UserDetailPage from './pages_user/UserDetailPage';
 import TownListPage from './pages_towns/TownListPage';
+import ArticleDisplayPage from './pages_articles/ArticleDisplayPage';
+import { fetchArticleById } from './api/mockApi';
 
 // Root route wraps the App layout component
 const rootRoute = new RootRoute({ component: App });
@@ -43,17 +46,17 @@ const infoRoute = new Route({
   component: InfoPage,
 });
 
-const articlesRoute = new Route({
+/*const articlesRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/articles',
   component: ArticleListPage,
-});
+});*/
 
-const articleDetailRoute = new Route({
+/*const articleDetailRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/articles/$articleId', // note: $ not :
   component: ArticleDetailPage,
-});
+});*/
 
 const shopRoute = new Route({
   getParentRoute: () => rootRoute,
@@ -95,6 +98,22 @@ export const townsRoute = new Route({
   }),
 });
 
+export const articlesRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/articles/$articleId',
+  component: ArticleDisplayPage,
+
+  loader: async ({ params }) => {
+    const article = await fetchArticleById(params.articleId);
+    return { article };
+  },
+
+  pendingComponent: () => createElement('div', null, 'Pending...'),
+
+  errorComponent: ({ error }: { error: unknown }) =>
+    createElement('div', null, `Could not load article: ${error instanceof Error ? error.message : String(error)}`),
+});
+
 const notFoundRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '*',
@@ -108,12 +127,13 @@ const routeTree = rootRoute.addChildren([
   contactRoute,
   demoRoute,
   infoRoute,
-  articlesRoute,
-  articleDetailRoute,
+  //articlesRoute,
+  //articleDetailRoute,
   shopRoute,
   userListRoute,
   userDetailRoute,
   townsRoute,
+  articlesRoute,
   notFoundRoute,
 ]);
 
