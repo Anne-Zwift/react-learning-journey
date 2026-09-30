@@ -16,9 +16,11 @@ import UserDetailPage from './pages_user/UserDetailPage';
 import TownListPage from './pages_towns/TownListPage';
 import ArticleDisplayPage from './pages_articles/ArticleDisplayPage';
 import { fetchArticleById } from './api/mockApi';
+import ThemePage from './pages_theme/ThemePage';
 
 // Root route wraps the App layout component
 const rootRoute = new RootRoute({ component: App });
+
 
 // Index route rendered at "/"
 const indexRoute = new Route({
@@ -114,6 +116,12 @@ export const articlesRoute = new Route({
     createElement('div', null, `Could not load article: ${error instanceof Error ? error.message : String(error)}`),
 });
 
+const themeRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/theme',
+  component: ThemePage,
+});
+
 const notFoundRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '*',
@@ -134,6 +142,7 @@ const routeTree = rootRoute.addChildren([
   userDetailRoute,
   townsRoute,
   articlesRoute,
+  themeRoute,
   notFoundRoute,
 ]);
 
