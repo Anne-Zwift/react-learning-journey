@@ -17,6 +17,7 @@ import TownListPage from './pages_towns/TownListPage';
 import ArticleDisplayPage from './pages_articles/ArticleDisplayPage';
 import { fetchArticleById } from './api/mockApi';
 import ThemePage from './pages_theme/ThemePage';
+import CounterPage from './pages_counter/CounterPage';
 
 // Root route wraps the App layout component
 const rootRoute = new RootRoute({ component: App });
@@ -122,6 +123,14 @@ const themeRoute = new Route({
   component: ThemePage,
 });
 
+const counterRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/counter',
+  component: CounterPage,
+});
+
+
+
 const notFoundRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '*',
@@ -143,6 +152,7 @@ const routeTree = rootRoute.addChildren([
   townsRoute,
   articlesRoute,
   themeRoute,
+  counterRoute,
   notFoundRoute,
 ]);
 

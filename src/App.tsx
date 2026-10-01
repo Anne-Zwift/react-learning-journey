@@ -17,6 +17,7 @@ return (
       <div>      
         <h1>TanStack Router Demo</h1>
         <nav>
+          <Link to="/counter">Counter</Link> | {' '}
           <Link to="/theme">Theme</Link> | {' '}
           <Link to="/">Welcome</Link> |{' '}
           <Link to="/contact">Contact</Link> |{' '}
