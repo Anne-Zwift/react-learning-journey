@@ -18,6 +18,8 @@ import ArticleDisplayPage from './pages_articles/ArticleDisplayPage';
 import { fetchArticleById } from './api/mockApi';
 import ThemePage from './pages_theme/ThemePage';
 import CounterPage from './pages_counter/CounterPage';
+import ReduxUserPage from './pages_user/ReduxUserPage';
+
 
 // Root route wraps the App layout component
 const rootRoute = new RootRoute({ component: App });
@@ -129,6 +131,11 @@ const counterRoute = new Route({
   component: CounterPage,
 });
 
+const userRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/redux-user',
+  component: ReduxUserPage,
+});
 
 
 const notFoundRoute = new Route({
@@ -153,6 +160,7 @@ const routeTree = rootRoute.addChildren([
   articlesRoute,
   themeRoute,
   counterRoute,
+  userRoute,
   notFoundRoute,
 ]);
 

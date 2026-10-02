@@ -2,6 +2,8 @@
 import { Outlet, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { ThemeContext } from './contexts/ThemeContext';
+import { Provider } from 'react-redux';
+import store from './app/store';
 import './App.css';
 
 function App() {
@@ -14,9 +16,10 @@ function App() {
 
 return (
     <ThemeContext.Provider value={contextValue}>
+      <Provider store={store}>
       <div>      
-        <h1>TanStack Router Demo</h1>
         <nav>
+          <Link to='/redux-user'>Redux User</Link> | {' '}
           <Link to="/counter">Counter</Link> | {' '}
           <Link to="/theme">Theme</Link> | {' '}
           <Link to="/">Welcome</Link> |{' '}
@@ -34,6 +37,9 @@ return (
         <hr />
       <Outlet />
       </div>
+
+      </Provider>
+
     </ThemeContext.Provider>
   );
 }
