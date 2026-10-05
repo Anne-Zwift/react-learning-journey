@@ -19,6 +19,7 @@ return (
       <Provider store={store}>
       <div>      
         <nav>
+          <Link to="/shopping-cart">Zustand Cart</Link> | {' '}
           <Link to="/user-profile">User Profile</Link> | {' '}
           <Link to='/redux-user'>Redux User</Link> | {' '}
           <Link to="/counter">Counter</Link> | {' '}
