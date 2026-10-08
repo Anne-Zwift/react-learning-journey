@@ -21,6 +21,7 @@ import CounterPage from './pages_counter/CounterPage';
 import ReduxUserPage from './pages_user/ReduxUserPage';
 import UserProfileLoader from './components/UserProfileLoader';
 import CartSummary from './components/CartSummary';
+import CartSummaryRTK from './components/CartSummaryRTK';
 
 
 // Root route wraps the App layout component
@@ -151,6 +152,12 @@ const shoppingCartRoute = new Route({
   component: CartSummary,
 });
 
+const shoppingCartRTKRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/shopping-cartRTK',   // distinct from /redux-user and /users
+  component: CartSummaryRTK,
+});
+
 const notFoundRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '*',
@@ -176,6 +183,7 @@ const routeTree = rootRoute.addChildren([
   userRoute,
   userProfileRoute,
   shoppingCartRoute,
+  shoppingCartRTKRoute,
   notFoundRoute,
 ]);
 
