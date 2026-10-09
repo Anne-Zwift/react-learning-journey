@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 interface Product {
   productId: string | number;
@@ -17,7 +18,9 @@ interface CartState {
   clearCart: () => void;
 }
 
-const useCartStore = create<CartState>((set) => ({
+const useCartStore = create<CartState>()(
+  persist(
+    (set) => ({
   items: [],
 
   addItem: (product) =>
@@ -64,6 +67,12 @@ const useCartStore = create<CartState>((set) => ({
           return {items: updatedItems };
         }),
       clearCart: () => set({ items: [] }),
-}));
+}),
+{
+  name: "shopping-cart-storage",
+  storage: createJSONStorage(() => localStorage),
+}
+  )
+);
 
 export default useCartStore;
