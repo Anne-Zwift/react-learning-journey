@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { persist, createJSONStorage, devtools } from "zustand/middleware";
 
 interface Product {
   productId: string | number;
@@ -19,7 +19,7 @@ interface CartState {
 }
 
 const useCartStore = create<CartState>()(
-  persist(
+  devtools(persist(
     (set) => ({
   items: [],
 
@@ -42,7 +42,11 @@ const useCartStore = create<CartState>()(
         const updatedItems = [...state.items, newItem];
         return { items: updatedItems };
       }
-    }),
+    }, 
+    false,
+  "cart/addItem"
+ ),
+
     updateQuantity: (productId, quantity) =>
       set((state) => {
         if (quantity <= 0) {
@@ -58,20 +62,23 @@ const useCartStore = create<CartState>()(
           );
           return { items: updatedItems };
         }
-      }),
+      }, false, "cart/updateQuantity"),
+
       removeItem: (productId) =>
         set((state) => {
           const updatedItems = state.items.filter(
             (item) => item.productId !== productId
           );
           return {items: updatedItems };
-        }),
-      clearCart: () => set({ items: [] }),
+        }, false, "cart/removeItem"),
+      clearCart: () => set({ items: [] }, false, "cart/clearCart"),
 }),
 {
   name: "shopping-cart-storage",
   storage: createJSONStorage(() => localStorage),
 }
+),
+{ name: "Zustand_CartStore" }
   )
 );
 
