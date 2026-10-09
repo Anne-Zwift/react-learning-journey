@@ -22,6 +22,7 @@ import ReduxUserPage from './pages_user/ReduxUserPage';
 import UserProfileLoader from './components/UserProfileLoader';
 import CartSummary from './components/CartSummary';
 import CartSummaryRTK from './components/CartSummaryRTK';
+import LoginForm from './components/LoginForm';
 
 
 // Root route wraps the App layout component
@@ -158,6 +159,12 @@ const shoppingCartRTKRoute = new Route({
   component: CartSummaryRTK,
 });
 
+const loginFormRTKRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: 'login-formRTK',
+  component: LoginForm,
+});
+
 const notFoundRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '*',
@@ -184,6 +191,7 @@ const routeTree = rootRoute.addChildren([
   userProfileRoute,
   shoppingCartRoute,
   shoppingCartRTKRoute,
+  loginFormRTKRoute,
   notFoundRoute,
 ]);
 
